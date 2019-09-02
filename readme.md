@@ -81,4 +81,8 @@ php artisan queue:retry all
 - 超過 6 個月的資料可以刪除
     - SELECT * FROM `jobmans` WHERE created_at < DATE_SUB(NOW(), INTERVAL 180 DAY);
 
-
+- 未加入 queue 的 Jobman
+    - Jobman push() 的時候如果沒有開啟 redis
+    - 那麼這些 jobmans 將永遠不會被執行到
+    - 建立一個 console command 將這些 jobman 丟到 redis
+    - 該功能一方面也可以再次執行 jobman

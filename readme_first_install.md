@@ -8,12 +8,6 @@
 composer require "ydin/jobman:0.1.0"
 ```
 
-### install for command line
-```
-composer config "repositories.jobman" path "packages/System/Jobman"
-composer require "ydin/jobman:dev-master"
-```
-
 ### vi .env
 ```
 QUEUE_DRIVER=redis
@@ -81,3 +75,9 @@ php artisan vendor:publish --tag="horizon-assets" --tag="horizon-provider"
 - "不需要" 建立 laravel "jobs" table
 - 要建立 laravel "failed_jobs" table
 
+### supervisor (option)
+```
+go to production
+sudo touch /opt/www/your-project/shared/storage/logs/horizon.log
+sudo chmod 777 /opt/www/your-project/shared/storage/logs/horizon.log
+```
