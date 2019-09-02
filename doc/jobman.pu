@@ -1,0 +1,47 @@
+@startuml
+start
+
+:Jobman->push()
+    $jobman->type = 'hello-world'
+    $jobman->attribs = [
+        "user_id" => 9527
+    ];
+
+    while (wait worker)
+
+        partition Hello-World(worker) {
+
+            :worker get job from queue;
+
+            :job execute before
+                reset $jobman
+                $jobman->executed_at = date()
+                $jobman->executed_total + 1;
+
+            if (job execute success ?) then (yes)
+
+                :complete
+                    $jobman->completed_at = date()
+                    $jobman->status = complete;
+
+                stop
+
+            else (no)
+
+                :fail
+                    $jobman->failed_at = date()
+                    $jobman->status = fail;
+
+            endif
+
+        }
+
+        :job in failed_jobs table
+            wait job retry;
+
+    endwhile
+
+    :if worker die;
+
+stop
+@enduml

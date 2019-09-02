@@ -1,0 +1,27 @@
+{
+    "name": "ydin/jobman",
+    "require": {
+        "laravel/horizon": "3.3.2",
+        "php": ">=7.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jobman\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Jobman\\JobmanServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
+}
