@@ -81,3 +81,9 @@ go to production
 sudo touch /opt/www/your-project/shared/storage/logs/horizon.log
 sudo chmod 777 /opt/www/your-project/shared/storage/logs/horizon.log
 ```
+
+### 上線之前, 要先對 production 做的事
+- 已啟用 redis
+- 已啟用 supervisor
+- .env 有些要在上線之前設定
+- .env 有些要在上線之後立即設定
