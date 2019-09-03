@@ -119,14 +119,27 @@ class JobmanServiceProvider extends ServiceProvider
     {
         Horizon::auth(function(Request $request) {
 
+            $checkType = null;
             if (in_array($request->ip(), config('jobman.security.allow_ip'))) {
-                return true;
+                $checkType = 'ip';
             }
             elseif ($this->app->environment('local')) {
-                return true;
+                $checkType = 'local';
             }
 
-            die('Security exit !');
+            //
+            if ($checkType) {
+                if (strpos(php_sapi_name(), 'cli') !== false) {
+                    echo "<!-- allow: {$checkType} -->";
+                }
+                return true;
+            }
+            else {
+                die('Security exit !');
+            }
+
+
+
 
             /*
             return (

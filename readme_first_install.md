@@ -8,12 +8,6 @@
 composer require "ydin/jobman:0.1.0"
 ```
 
-### install for command line
-```
-composer config "repositories.jobman" path "packages/System/Jobman"
-composer require "ydin/jobman:dev-master"
-```
-
 ### vi .env
 ```
 QUEUE_DRIVER=redis
